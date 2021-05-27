@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            <ul>
+                Nombre
+                <li><input type="text" name="Nombre" /></li>
+                Apellido Paterno
+                <li><input type="text" name="ApellidoPaterno" /></li>
+                Apellido Materno
+                <li><input type="text" name="ApellidoMaterno" /></li>
+                Fecha de Nacimiento
+                <li><input type="date" name="FechaNacimiento" /></li>
+                Genero
+                <li><input type="text" name="Genero" /></li>
+                Fecha de Ingreso
+                <li><input type="date" name="FechaIngreso" /></li>
+                Activo
+                <li> <input type="checkbox" name="Activo" /></li>
+                RFC
+                <li><input type="text" name="RFC" /></li>
+            </ul>
+            <input type="submit" class="btn btn-success" value="Registrar" />
+        </div>
+    </form>
+</div>
+
+@section scripts {
+    <script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+
+            url = "@Url.Content("~/Alumnos/Registro")"
+            parametros = $(this).serialize();
+
+            $.post(url, parametros, function (data) {
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/")";
+                }
+                else {
+                    alert(data);
+                }
+            })
+
+        })
+    })
+    </script>
+}
+
+
